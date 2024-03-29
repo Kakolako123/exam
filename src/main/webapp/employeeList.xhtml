@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Tableau avec Bootstrap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<f:view>
+    <body>
+
+    <!-- Barre de navigation Bootstrap -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"/></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tableau Bootstrap -->
+    <h:dataTable var="employee" value="#{employeebean.employees}" styleClass="table table-striped">
+        <h:column>
+            <f:facet name="header">ID:</f:facet>
+            #{employee.idemployee}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name:</f:facet>
+            #{employee.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Email:</f:facet>
+            #{employee.email}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Skills:</f:facet>
+            #{employee.skills}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Project:</f:facet>
+            #{employee.project}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Action:</f:facet>
+            <h:panelGroup>
+                <h:form class="d-inline">
+                    <h:commandButton value="delete" action="#{employeebean.delete()}"  styleClass="btn btn-danger"/>
+                </h:form>
+                <h:form class="d-inline">
+                    <h:commandButton value="update" styleClass="btn btn-warning"  />
+                </h:form>
+            </h:panelGroup>
+        </h:column>
+    </h:dataTable>
+
+    <div class="mt-3 d-flex justify-content-between">
+        <h:form style="margin-left: 60px;">
+            <h:commandButton value="Add" action="addEmployee" styleClass="btn btn-success"/>
+        </h:form>
+        <h:form style="margin-right: 60px;">
+            <h:commandButton value="Save" styleClass="btn btn-primary"/>
+        </h:form>
+    </div>
+    </body>
+</f:view>
+</html>
